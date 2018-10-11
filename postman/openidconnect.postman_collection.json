@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"_postman_id": "dd535972-3b6c-468f-b222-bb37a7989920",
+			"_postman_id": "6f5eac6f-f8db-43cf-b807-df3184fa02ea",
 			"name": "http://localhost:5000/connect/token",
 			"request": {
 				"method": "POST",
@@ -21,7 +21,7 @@
 					"urlencoded": [
 						{
 							"key": "client_id",
-							"value": "client",
+							"value": "ro.client",
 							"sessionValue": "client",
 							"type": "text"
 						},
@@ -33,9 +33,21 @@
 						},
 						{
 							"key": "grant_type",
-							"value": "client_credentials",
+							"value": "password",
 							"sessionValue": "client_credentials",
-							"description": "This scope is needed to request an access token ",
+							"description": "This scope is needed to request an access token  with resource owner flow",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "alice",
+							"sessionValue": "alice",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "secret",
+							"sessionValue": "secret",
 							"type": "text"
 						}
 					]
@@ -56,7 +68,7 @@
 			"response": []
 		},
 		{
-			"_postman_id": "fc123f1c-7f24-4850-a5c4-91edf7044a67",
+			"_postman_id": "2bdae137-010f-4eb3-97e7-505a5d8d82fe",
 			"name": "http://localhost:5001/identity",
 			"request": {
 				"auth": {

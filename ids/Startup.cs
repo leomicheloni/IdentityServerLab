@@ -18,7 +18,15 @@ namespace ids
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
                 .AddInMemoryApiResources(Config.GetApiResources())
-                .AddInMemoryClients(Config.GetClients());
+                .AddInMemoryClients(Config.GetClients())
+                .AddTestUsers(Config.GetUsers());
+
+                //The AddTestUsers extension method does a couple of things under the hood
+
+                //adds support for the resource owner password grant
+                //adds support to user related services typically used by a login UI
+                //adds support for a profile service based on the test users
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
