@@ -1,0 +1,106 @@
+{
+	"info": {
+		"_postman_id": "687f9606-df75-4672-850b-1939a984fdf3",
+		"name": "openidconnect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "dd535972-3b6c-468f-b222-bb37a7989920",
+			"name": "http://localhost:5000/connect/token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "client",
+							"sessionValue": "client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"sessionValue": "secret",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"sessionValue": "client_credentials",
+							"description": "This scope is needed to request an access token ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "fc123f1c-7f24-4850-a5c4-91edf7044a67",
+			"name": "http://localhost:5001/identity",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6ImUxNGNkODMzNTM1YWQ2MjJjODNmYTViYTU1YmY4ZmFiIiwidHlwIjoiSldUIn0.eyJuYmYiOjE1MzkyNTE5MjAsImV4cCI6MTUzOTI1NTUyMCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDAwIiwiYXVkIjpbImh0dHA6Ly9sb2NhbGhvc3Q6NTAwMC9yZXNvdXJjZXMiLCJhcGkxIl0sImNsaWVudF9pZCI6ImNsaWVudCIsInNjb3BlIjpbImFwaTEiXX0.pvjwMQ2OESl4RPwnzw4eKlVyNldKGYzRL3wEtcceP6wb2GkhofVJOVcjCu3ONAvKYFIRU3CCofh0VS4laHm05Yww4vmbDVF8rHei1Wk492Hgj588tEwys2tl25khZq1KLlZJW_ux2tgrqBt7mJqnKG6wDXjGhue1_fSW9D_IKtROALWTujuFm6JORSu9Q1HzQwQAbXEId8Co6PEon6yvkegtnOqU9hUctbMic2NdFa7-J7h4dX8tRMzKyKpqVcXeN7vxl_uNQaXyjrFEEcMSVlVLdFlvgDoCoeOGcLW0XozMYJgD4D9XUiGRLd6crFapLgAtnEeQBdB7IQQysyZOFQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "96c75b62-b7b1-3db7-a0ff-fb5743be1fd8",
+							"sessionValue": "bf29c10a-18f2-37a6-aef4-1ad4408e371a",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5001/identity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"identity"
+					]
+				},
+				"description": "Basic access token requet to API"
+			},
+			"response": []
+		}
+	]
+}
