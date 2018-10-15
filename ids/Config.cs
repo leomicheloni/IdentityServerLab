@@ -16,21 +16,7 @@ namespace ids
         }
         public static List<TestUser> GetUsers()
         {
-            return new List<TestUser>
-            {
-                new TestUser
-                {
-                    SubjectId = "1",
-                    Username = "alice",
-                    Password = "password"
-                },
-                new TestUser
-                {
-                    SubjectId = "2",
-                    Username = "bob",
-                    Password = "password"
-                }
-            };
+            return new List<TestUser> { };
         }
 
         public static IEnumerable<IdentityResource> GetIdentityResources()
@@ -48,48 +34,34 @@ namespace ids
             {
                 new Client
                 {
-                    ClientId = "client",
-
-                    // no interactive user, use the clientid/secret for authentication
-                    AllowedGrantTypes = GrantTypes.ClientCredentials,
-
-                    // secret for authentication
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-
-                    // scopes that client has access to
-                    AllowedScopes = { "api1" }
-                },
-                new Client
-                {
-                    ClientId = "ro.client",
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    ClientSecrets =
-                    {
-                        new Secret("secret".Sha256())
-                    },
-                    AllowedScopes = { "api1" }
-                },
-                // OpenID Connect implicit flow client (MVC)
-                new Client
-                {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
-
-                    // where to redirect to after login
                     RedirectUris = { "http://localhost:5002/signin-oidc" },
-
-                    // where to redirect to after logout
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile
-                    }
+                    },
+                    RequireConsent = false,
+                    EnableLocalLogin = false
+                },new Client
+                {
+                    ClientId = "angular",
+                    ClientName = "SPA Client",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    RedirectUris = { "http://localhost:4200/auth-callback" },
+                    PostLogoutRedirectUris = { "http://localhost:4200/" },
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    },
+                    AllowAccessTokensViaBrowser = true,
+                    RequireConsent = false,
+                    EnableLocalLogin = false
                 }
             };
         }

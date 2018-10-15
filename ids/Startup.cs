@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IdentityServer4;
+﻿using IdentityServer4;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ids
 {
     public class Startup
     {
-
-        string clientId = "my application id";
-        string clientSecret = "client secret";
-        string authority = "open id connect server endpoint";
+        private string clientId = "44b2da50-090d-4d62-b4dc-5156eeecf7a0";
+        private string clientSecret = "fZDkC60ghULrH8sQyziFZN1oeNNZpGT+oUIpuLdcfiE=";
+        private string authority = "https://login.microsoftonline.com/abc9b1b9-75e9-41e6-a5cf-d58c753ecc7b/";
 
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddCors(options =>
+            {
+                // this defines a CORS policy called "default"
+                options.AddPolicy("default", policy =>
+                {
+                    policy.WithOrigins("http://localhost:4200")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
@@ -35,6 +40,7 @@ namespace ids
                 options.Authority = authority;
                 options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
                 options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+                options.SaveTokens = true;
 
                 options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
                 {
@@ -42,7 +48,6 @@ namespace ids
                     RoleClaimType = "role"
                 };
             });
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,7 +57,7 @@ namespace ids
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors("default");
             app.UseIdentityServer();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
