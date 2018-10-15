@@ -27,14 +27,18 @@ namespace WebClient
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
 
+                options.ResponseType = "code id_token";
+                options.GetClaimsFromUserInfoEndpoint = true;
+
                 options.ClientId = "mvc";
+                options.ClientSecret = "secret";
                 options.SaveTokens = true;
+
+                options.Scope.Add("api1");
+                options.Scope.Add("offline_access");
+                options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of 
             });
 
-            //AddAuthentication adds the authentication services to DI.We are using a cookie as the primary means to authenticate a user(via "Cookies" as the DefaultScheme). We set the DefaultChallengeScheme to "oidc" because when we need the user to login, we will be using the OpenID Connect scheme.
-            //We then use AddCookie to add the handler that can process cookies.
-            //Finally, AddOpenIdConnect is used to configure the handler that perform the OpenID Connect protocol.The Authority indicates that we are trusting IdentityServer. We then identify this client via the ClientId. SignInScheme is used to issue a cookie using the cookie handler once the OpenID Connect protocol is complete.And SaveTokens is used to persist the tokens from IdentityServer in the cookie(as they will be needed later).
-            //As well, we’ve turned off the JWT claim type mapping to allow well - known claims(e.g. ‘sub’ and ‘idp’) to flow through unmolested:
 
         }
 
