@@ -60,7 +60,7 @@ namespace ids
 
                     RedirectUris           = { "http://localhost:5002/signin-oidc" },
                     PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
+                    RequireConsent = false,
                     AllowedScopes =
                     {
                         IdentityServerConstants.StandardScopes.OpenId,

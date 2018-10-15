@@ -30,14 +30,13 @@ namespace WebClient
                 options.ResponseType = "code id_token";
                 options.GetClaimsFromUserInfoEndpoint = true;
 
-
                 options.ClientId = "mvc";
                 options.ClientSecret = "secret";
                 options.SaveTokens = true;
 
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
-                options.Scope.Remove("profile");
+                options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of 
             });
 
 
