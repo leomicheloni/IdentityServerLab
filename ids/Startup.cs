@@ -7,9 +7,13 @@ namespace ids
 {
     public class Startup
     {
-        string clientId = "";
-        string clientSecret = "";
-        string authority = "";
+        private string clientId = "";
+        private string clientSecret = "";
+        private string authority = "";
+
+        private string clientId2 = "";
+        private string clientSecret2 = "";
+        private string authority2 = "";
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -17,7 +21,6 @@ namespace ids
 
             services.AddCors(options =>
             {
-                // this defines a CORS policy called "default"
                 options.AddPolicy("default", policy =>
                 {
                     policy.WithOrigins("http://localhost:4200")
@@ -33,7 +36,23 @@ namespace ids
                 .AddTestUsers(Config.GetUsers())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources());
 
-            services.AddAuthentication().AddOpenIdConnect("oidc", "Open id connect", options =>
+            services.AddAuthentication().AddOpenIdConnect("oidc", "AAD ", options =>
+            {
+                options.ClientId = clientId;
+                options.ClientSecret = clientSecret;
+                options.Authority = authority;
+                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+                options.SaveTokens = true;
+
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    NameClaimType = "name",
+                    RoleClaimType = "role"
+                };
+            });
+
+            services.AddAuthentication().AddOpenIdConnect("oidc2", "AAD Propio", options =>
             {
                 options.ClientId = clientId;
                 options.ClientSecret = clientSecret;

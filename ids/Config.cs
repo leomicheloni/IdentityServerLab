@@ -11,7 +11,8 @@ namespace ids
         {
             return new List<ApiResource>
             {
-                new ApiResource("api1", "My API")
+                new ApiResource("mastriaAPI", "Mastria Web API"),
+                new ApiResource("api1", "Otra aPI")
             };
         }
         public static List<TestUser> GetUsers()
@@ -35,7 +36,7 @@ namespace ids
                 new Client
                 {
                     ClientId = "angular",
-                    ClientName = "SPA Client",
+                    ClientName = "Mastria",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = { "http://localhost:4200/auth-callback" },
                     PostLogoutRedirectUris = { "http://localhost:4200/" },
@@ -43,12 +44,28 @@ namespace ids
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "api1"
+                        "mastriaAPI"
                     },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
                     RequireConsent = false,
                     EnableLocalLogin = false
+                },new Client
+                {
+                    ClientId = "mvc",
+                    ClientName = "MVC Client",
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+
+                    RedirectUris = { "http://localhost:5002/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
+                    AllowOfflineAccess = true,
+                    EnableLocalLogin = false,
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "api1"
+                    }
                 }
             };
         }
