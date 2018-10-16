@@ -34,20 +34,6 @@ namespace ids
             {
                 new Client
                 {
-                    ClientId = "mvc",
-                    ClientName = "MVC Client",
-                    AllowedGrantTypes = GrantTypes.Implicit,
-                    RedirectUris = { "http://localhost:5002/signin-oidc" },
-                    PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-                    AllowedScopes = new List<string>
-                    {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        IdentityServerConstants.StandardScopes.Profile
-                    },
-                    RequireConsent = false,
-                    EnableLocalLogin = false
-                },new Client
-                {
                     ClientId = "angular",
                     ClientName = "SPA Client",
                     AllowedGrantTypes = GrantTypes.Implicit,
@@ -60,6 +46,7 @@ namespace ids
                         "api1"
                     },
                     AllowAccessTokensViaBrowser = true,
+                    AlwaysIncludeUserClaimsInIdToken = true,
                     RequireConsent = false,
                     EnableLocalLogin = false
                 }

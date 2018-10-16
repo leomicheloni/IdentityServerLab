@@ -17,8 +17,7 @@ namespace AngularClient
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvcCore() //.SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-
+            services.AddMvcCore()
             .AddAuthorization()
             .AddJsonFormatters();
 

@@ -36,7 +36,7 @@ namespace WebClient
 
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
-                options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of 
+                options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of a single value
             });
 
 

@@ -7,9 +7,9 @@ namespace ids
 {
     public class Startup
     {
-        private string clientId = "44b2da50-090d-4d62-b4dc-5156eeecf7a0";
-        private string clientSecret = "fZDkC60ghULrH8sQyziFZN1oeNNZpGT+oUIpuLdcfiE=";
-        private string authority = "https://login.microsoftonline.com/abc9b1b9-75e9-41e6-a5cf-d58c753ecc7b/";
+        string clientId = "";
+        string clientSecret = "";
+        string authority = "";
 
         public void ConfigureServices(IServiceCollection services)
         {

@@ -6,18 +6,23 @@ export class AuthService {
   private user: User = null;
   private manager = new UserManager(getClientSettings());
 
-  constructor() { 
+  constructor() {
     this.manager.getUser().then(user => {
       this.user = user;
-    })
-  } 
+    });
+  }
 
   isLoggedIn(): boolean {
     return this.user != null && !this.user.expired;
   }
 
-  getClaims(): any{
-    return  this.user.profile;
+  getClaims(): any {
+   return this.user.profile;
+  }
+
+  getUser(): any {
+    
+    return this.user;
   }
 
   getAuthorizationHeaderValue(): string {
@@ -28,27 +33,27 @@ export class AuthService {
   }
 
   completeAuthentication(): Promise<void> {
-      return this.manager.signinRedirectCallback().then(user => {
-          this.user = user;
-      });
+    return this.manager.signinRedirectCallback().then(user => {
+      this.user = user;
+    });
   }
 
-  logout(): void{
+  logout(): void {
     this.manager.signoutRedirect().then(() => {
       this.manager.clearStaleState();
-      });
+    });
   }
 }
 
 export function getClientSettings(): UserManagerSettings {
   return {
-      authority: 'http://localhost:5000/',
-      client_id: 'angular',
-      redirect_uri: 'http://localhost:4200/auth-callback',
-      post_logout_redirect_uri: 'http://localhost:4200/',
-      response_type:"id_token token",
-      scope:"openid profile api1",
-      filterProtocolClaims: true,
-      loadUserInfo: false
+    authority: 'http://localhost:5000/',
+    client_id: 'angular',
+    redirect_uri: 'http://localhost:4200/auth-callback',
+    post_logout_redirect_uri: 'http://localhost:4200/',
+    response_type: "id_token token",
+    scope: "openid profile api1",
+    filterProtocolClaims: false,
+    loadUserInfo: false
   };
 }

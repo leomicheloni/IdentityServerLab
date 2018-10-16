@@ -7,24 +7,16 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './auth-callback.component.html',
   styleUrls: ['./auth-callback.component.css']
 })
-//export class AuthCallbackComponent implements OnInit {
-
-//  constructor(private authService: AuthService, private router: Router) { }
-
-//  ngOnInit() {
-//    this.authService.completeAuthentication().then(() => {
-//      if(this.authService.isLoggedIn()){
-//        this.router.navigate(['']);
-//      }
-//    })
-//  }
-//}
 
 export class AuthCallbackComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
-    this.authService.completeAuthentication();
+    this.authService.completeAuthentication().then(() => {
+      if(this.authService.isLoggedIn()){
+        this.router.navigate(['']);
+      }
+    })
   }
 }
