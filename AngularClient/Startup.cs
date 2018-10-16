@@ -25,7 +25,7 @@ namespace AngularClient
             .AddIdentityServerAuthentication(options => {
                 options.Authority = "http://localhost:5000";
                 options.RequireHttpsMetadata = false;
-                options.ApiName = "api1";
+                options.ApiName = "mastriaAPI";
             });
 
             // In production, the Angular files will be served from this directory

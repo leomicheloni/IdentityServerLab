@@ -33,13 +33,10 @@ namespace WebClient
                 options.ClientId = "mvc";
                 options.ClientSecret = "secret";
                 options.SaveTokens = true;
-
                 options.Scope.Add("api1");
                 options.Scope.Add("offline_access");
                 options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of a single value
             });
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +48,6 @@ namespace WebClient
             }
 
             app.UseAuthentication();
-
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
