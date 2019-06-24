@@ -11,7 +11,7 @@ namespace ids
         {
             return new List<ApiResource>
             {
-                new ApiResource("mastriaAPI", "Mastria Web API"),
+                new ApiResource("customAPI", "Custom Web API"),
                 new ApiResource("api1", "Otra aPI")
             };
         }
@@ -36,7 +36,7 @@ namespace ids
                 new Client
                 {
                     ClientId = "angular",
-                    ClientName = "Mastria",
+                    ClientName = "CustomClient",
                     AllowedGrantTypes = GrantTypes.Implicit,
                     RedirectUris = { "http://localhost:4200/auth-callback" },
                     PostLogoutRedirectUris = { "http://localhost:4200/" },
@@ -44,7 +44,7 @@ namespace ids
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
                         IdentityServerConstants.StandardScopes.Profile,
-                        "mastriaAPI"
+                        "customAPI"
                     },
                     AllowAccessTokensViaBrowser = true,
                     AlwaysIncludeUserClaimsInIdToken = true,
