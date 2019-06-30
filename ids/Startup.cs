@@ -11,10 +11,6 @@ namespace ids
         private string clientSecret = "";
         private string authority = "";
 
-        private string clientId2 = "";
-        private string clientSecret2 = "";
-        private string authority2 = "";
-
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
@@ -36,37 +32,37 @@ namespace ids
                 .AddTestUsers(Config.GetUsers())
                 .AddInMemoryIdentityResources(Config.GetIdentityResources());
 
-            services.AddAuthentication().AddOpenIdConnect("oidc", "AAD ", options =>
-            {
-                options.ClientId = clientId;
-                options.ClientSecret = clientSecret;
-                options.Authority = authority;
-                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
-                options.SaveTokens = true;
+            //services.AddAuthentication().AddOpenIdConnect("oidc", "AAD ", options =>
+            //{
+            //    options.ClientId = clientId;
+            //    options.ClientSecret = clientSecret;
+            //    options.Authority = authority;
+            //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+            //    options.SaveTokens = true;
 
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
-            });
+            //    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            //    {
+            //        NameClaimType = "name",
+            //        RoleClaimType = "role"
+            //    };
+            //});
 
-            services.AddAuthentication().AddOpenIdConnect("oidc2", "AAD Propio", options =>
-            {
-                options.ClientId = clientId;
-                options.ClientSecret = clientSecret;
-                options.Authority = authority;
-                options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
-                options.SignOutScheme = IdentityServerConstants.SignoutScheme;
-                options.SaveTokens = true;
+            //services.AddAuthentication().AddOpenIdConnect("oidc2", "AAD Propio", options =>
+            //{
+            //    options.ClientId = clientId;
+            //    options.ClientSecret = clientSecret;
+            //    options.Authority = authority;
+            //    options.SignInScheme = IdentityServerConstants.ExternalCookieAuthenticationScheme;
+            //    options.SignOutScheme = IdentityServerConstants.SignoutScheme;
+            //    options.SaveTokens = true;
 
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                {
-                    NameClaimType = "name",
-                    RoleClaimType = "role"
-                };
-            });
+            //    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+            //    {
+            //        NameClaimType = "name",
+            //        RoleClaimType = "role"
+            //    };
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

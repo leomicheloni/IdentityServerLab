@@ -17,7 +17,14 @@ namespace ids
         }
         public static List<TestUser> GetUsers()
         {
-            return new List<TestUser> { };
+            return new List<TestUser> {
+                new TestUser
+                {
+                    Password = "mypass",
+                    Username = "alice",
+                    SubjectId = "alice@alice.com"
+                }
+            };
         }
 
         public static IEnumerable<IdentityResource> GetIdentityResources()
@@ -35,6 +42,19 @@ namespace ids
             {
                 new Client
                 {
+                    ClientId = "ro.client",
+                    ClientName = "Resource owner password",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        "customAPI"
+                    },
+                    ClientSecrets = { new Secret ( "secret".Sha256())}
+                },
+                new Client
+                {
                     ClientId = "angular",
                     ClientName = "CustomClient",
                     AllowedGrantTypes = GrantTypes.Implicit,
@@ -50,7 +70,8 @@ namespace ids
                     AlwaysIncludeUserClaimsInIdToken = true,
                     RequireConsent = false,
                     EnableLocalLogin = false
-                },new Client
+                },
+                new Client
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",

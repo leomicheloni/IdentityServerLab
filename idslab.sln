@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2041
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ids", "ids\ids.csproj", "{4A77AAD5-7465-465B-8C39-A258EC5CCE54}"
 EndProject
@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client", "Client\Client.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{291B89C9-2BF4-406C-84FF-5F31567225AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularClient", "AngularClient\AngularClient.csproj", "{E333B82E-88C6-49BB-A509-A6DC8AAAD197}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AngularClient", "AngularClient\AngularClient.csproj", "{E333B82E-88C6-49BB-A509-A6DC8AAAD197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Profiles", "API.Profiles\API.Profiles.csproj", "{F90C50CB-1FAF-4074-A7A5-2A76F2DCB30F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E333B82E-88C6-49BB-A509-A6DC8AAAD197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E333B82E-88C6-49BB-A509-A6DC8AAAD197}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E333B82E-88C6-49BB-A509-A6DC8AAAD197}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F90C50CB-1FAF-4074-A7A5-2A76F2DCB30F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F90C50CB-1FAF-4074-A7A5-2A76F2DCB30F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F90C50CB-1FAF-4074-A7A5-2A76F2DCB30F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F90C50CB-1FAF-4074-A7A5-2A76F2DCB30F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

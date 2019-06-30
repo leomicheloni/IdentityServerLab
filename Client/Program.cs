@@ -15,6 +15,12 @@ namespace Client
         {
 
 
+            await ResourceOwnerPasswordFlow();
+            Console.WriteLine("Hello World!");
+        }
+
+        private static async Task ResourceOwnerPasswordFlow()
+        {
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
             {
@@ -23,7 +29,7 @@ namespace Client
             }
 
             var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
-            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "password", "api1");
+            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "mypass", "customAPI");
 
 
             if (tokenResponse.IsError)
@@ -47,8 +53,6 @@ namespace Client
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(JArray.Parse(content));
             }
-
-            Console.WriteLine("Hello World!");
         }
     }
 }
