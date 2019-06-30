@@ -84,6 +84,26 @@ namespace ids
                         IdentityServerConstants.StandardScopes.Profile,
                         "customAPI"
                     }
+                },
+                new Client
+                {
+                    ClientId = "cf.client",
+                    ClientName = "Authorization Code Client",
+                    ClientSecrets = new List<Secret> { new Secret("secret".Sha256()) },
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RedirectUris = new List<string>
+                    {
+                        "http://localhost:5002/home/auth"
+                    },
+                    PostLogoutRedirectUris = new List<string>
+                    {
+                        "http://localhost:5002/home"
+                    },
+                    AllowedScopes = new List<string>
+                    {
+                            "customAPI"
+                    },
+                    AccessTokenType = AccessTokenType.Jwt
                 }
             };
         }
