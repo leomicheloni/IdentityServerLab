@@ -14,13 +14,6 @@ namespace Client
         private static async Task MainAsync()
         {
 
-
-            await ResourceOwnerPasswordFlow();
-            Console.WriteLine("Hello World!");
-        }
-
-        private static async Task ResourceOwnerPasswordFlow()
-        {
             var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
             if (disco.IsError)
             {
@@ -28,9 +21,8 @@ namespace Client
                 return;
             }
 
-            var tokenClient = new TokenClient(disco.TokenEndpoint, "ro.client", "secret");
-            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "mypass", "customAPI");
-
+            //var tokenResponse = await ResourceOwnerPasswordFlow(disco.TokenEndpoint, disco.AuthorizeEndpoint);
+            var tokenResponse = await ClientCredentialsFlow(disco.TokenEndpoint, disco.AuthorizeEndpoint);
 
             if (tokenResponse.IsError)
             {
@@ -38,12 +30,12 @@ namespace Client
                 return;
             }
 
-            Console.WriteLine(tokenResponse.Json);
 
             var client = new HttpClient();
             client.SetBearerToken(tokenResponse.AccessToken);
 
             var response = await client.GetAsync("http://localhost:5001/identity");
+
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);
@@ -53,6 +45,28 @@ namespace Client
                 var content = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(JArray.Parse(content));
             }
+
+            Console.WriteLine("Finished...");
+            Console.ReadLine();
         }
+
+        private static async Task<TokenResponse> ResourceOwnerPasswordFlow(string tokenEndpoint, string authorizationEndpoint)
+        {
+
+            var tokenClient = new TokenClient(tokenEndpoint, "ro.client", "secret");
+            var tokenResponse = await tokenClient.RequestResourceOwnerPasswordAsync("alice", "mypass", "customAPI");
+
+            return tokenResponse;
+        }
+
+        private static async Task<TokenResponse> ClientCredentialsFlow(string tokenEndpoint, string authorizationEndpoint)
+        {
+
+            var tokenClient = new TokenClient(tokenEndpoint, "cc.client", "secret");
+            var tokenResponse = await tokenClient.RequestClientCredentialsAsync("customAPI");
+
+            return tokenResponse;
+        }
+
     }
 }
