@@ -54,7 +54,7 @@ namespace WebClient
 
             client.SetBearerToken(credentialsResponse.Result.AccessToken);
 
-            var response = await client.GetAsync("http://localhost:5002/secured/index");
+            var response = await client.GetAsync("http://localhost:5003/api/values");
             if (!response.IsSuccessStatusCode)
             {
                 Console.WriteLine(response.StatusCode);

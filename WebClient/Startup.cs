@@ -11,32 +11,6 @@ namespace WebClient
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-
-            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = "Cookies";
-                options.DefaultChallengeScheme = "oidc";
-            })
-            .AddCookie("Cookies")
-            .AddOpenIdConnect("oidc", options =>
-            {
-                options.SignInScheme = "Cookies";
-
-                options.Authority = "http://localhost:5000";
-                options.RequireHttpsMetadata = false;
-
-                options.ResponseType = "code id_token";
-                options.GetClaimsFromUserInfoEndpoint = true;
-
-                options.ClientId = "mvc";
-                options.ClientSecret = "secret";
-                options.SaveTokens = true;
-                options.Scope.Add("api1");
-                options.Scope.Add("offline_access");
-                options.Scope.Remove("profile"); // remove profile scope cos AAD gives us an array instead of a single value
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +21,6 @@ namespace WebClient
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseAuthentication();
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
