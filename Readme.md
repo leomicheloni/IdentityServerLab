@@ -1,6 +1,13 @@
 # Woking sample on how to use Open ID Connect in Identity Server 4, ASP.NET Core and Angular
 
-There're some useful link from where I get information
+Last updates include examples for:
+ - Authorization code flow.
+ - Implicit flow.
+ - Client credential flow.
+ - Resource owner password flow.
+
+There're some useful link from where I get information.
+
 
 https://openid.net/connect/
 
