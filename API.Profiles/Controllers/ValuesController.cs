@@ -9,10 +9,11 @@ namespace API.Profiles.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize] // in order to access to this controller client must have AddIdentityServerAuthentication.options.ApiName scope
     public class ValuesController : ControllerBase
     {
         // GET api/values
+        [Authorize(policy: "Read")]
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {

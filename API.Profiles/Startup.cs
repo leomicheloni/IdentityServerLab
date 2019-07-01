@@ -29,12 +29,12 @@ namespace API.Profiles
             {
                 options.AddPolicy("ALL", builder => // this policies apply at action level and are composed of multiple scopes
                 {
-                    builder.RequireScope("readAPI");
-                    builder.RequireScope("writeAPI");
+                    builder.RequireScope("read");
+                    builder.RequireScope("write");
                 });
                 options.AddPolicy("Read", builder =>
                 {
-                    builder.RequireScope("readAPI");
+                    builder.RequireScope("read");
                 });
             })
             .AddJsonFormatters();

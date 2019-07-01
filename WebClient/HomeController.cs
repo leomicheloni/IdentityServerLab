@@ -24,7 +24,7 @@ namespace WebClient
                         "?client_id=cf.client" +
                         "&response_type=code" +
                         "&redirect_uri=http://localhost:5002/home/auth" +
-                        "&scope=customAPI" +
+                        "&scope=customAPI+read" +
                         "&state={state}";
 
             return Redirect(url);

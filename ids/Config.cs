@@ -12,7 +12,9 @@ namespace ids
             return new List<ApiResource>
             {
                 new ApiResource("customAPI", "Custom Web API"),
-                new ApiResource("api1", "Otra aPI")
+                new ApiResource("api1", "Otra aPI"),
+                new ApiResource("read", "read rights"),
+                new ApiResource("write", "write rigths"),
             };
         }
         public static List<TestUser> GetUsers()
@@ -101,7 +103,9 @@ namespace ids
                     },
                     AllowedScopes = new List<string>
                     {
-                            "customAPI"
+                            "customAPI",
+                            "read",
+                            "write"
                     },
                     AccessTokenType = AccessTokenType.Jwt
                 }
