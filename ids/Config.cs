@@ -24,7 +24,12 @@ namespace ids
                 {
                     Password = "mypass",
                     Username = "alice",
-                    SubjectId = "alice@alice.com"
+                    SubjectId = "alice@alice.com",
+                    Claims = new List<System.Security.Claims.Claim>
+                    {
+                        new System.Security.Claims.Claim("family_name", "perez")
+                        
+                    }
                 }
             };
         }
@@ -105,7 +110,9 @@ namespace ids
                     {
                             "customAPI",
                             "read",
-                            "write"
+                            "write",
+                            "openid",
+                            "profile"
                     },
                     AccessTokenType = AccessTokenType.Jwt
                 }

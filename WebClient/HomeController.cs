@@ -24,7 +24,7 @@ namespace WebClient
                         "?client_id=cf.client" +
                         "&response_type=code" +
                         "&redirect_uri=http://localhost:5002/home/auth" +
-                        "&scope=customAPI+read" +
+                        "&scope=customAPI+read+openid+profile" +
                         "&state={state}";
 
             return Redirect(url);
@@ -65,7 +65,29 @@ namespace WebClient
                 Console.WriteLine(content);
             }
 
+            GetUserInfo(credentialsResponse.Result.AccessToken);
+
             return;
+        }
+
+        public void GetUserInfo(string accessToken)
+        {
+            // in order to get access to additional token "profile" scope must be requested
+            var infoRequest = new IdentityModel.Client.UserInfoRequest
+            {
+                Token = accessToken,
+                Address = $"{authserverurl}/connect/userinfo"
+            };
+
+            var client = new HttpClient();
+            var userinforesponse = client.GetUserInfoAsync(infoRequest);
+
+            if (userinforesponse.Result.IsError)
+            {
+                Console.WriteLine(userinforesponse.Result.Error);
+                return;
+            }
+
         }
 
     }
