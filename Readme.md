@@ -19,3 +19,5 @@ https://www.scottbrady91.com/Angular/SPA-Authentiction-using-OpenID-Connect-Angu
 
 https://developer.okta.com/blog/2017/04/17/angular-authentication-with-oidc
 
+some comment
+
